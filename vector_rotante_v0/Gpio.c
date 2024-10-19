@@ -26,8 +26,8 @@ void InitGpio(void)
 	GpioCtrlRegs.GPAPUD.all   = 0x00000FFF;		// Pullups enabled GPIO31-12, disabled GPIO11-0
 
 	GpioCtrlRegs.GPAMUX1.bit.GPIO0  = 1;		// 0=GPIO  1=EPWM1A     2=rsvd       3=rsvd  (used in Lab 7)
-	GpioCtrlRegs.GPAMUX1.bit.GPIO1  = 0;		// 0=GPIO  1=EPWM1B     2=ECAP6      3=rsvd
-	GpioCtrlRegs.GPAMUX1.bit.GPIO2  = 1;		// 0=GPIO  1=EPWM2A     2=rsvd       3=rsvd EDITADOOOOOOOOOO
+	GpioCtrlRegs.GPAMUX1.bit.GPIO1  = 1;		// 0=GPIO  1=EPWM1B     2=ECAP6      3=rsvd
+	GpioCtrlRegs.GPAMUX1.bit.GPIO2  = 0;		// 0=GPIO  1=EPWM2A     2=rsvd       3=rsvd
 	GpioCtrlRegs.GPAMUX1.bit.GPIO3  = 0;		// 0=GPIO  1=EPWM2B     2=ECAP5      3=rsvd
 	GpioCtrlRegs.GPAMUX1.bit.GPIO4  = 0;		// 0=GPIO  1=EPWM3A     2=rsvd       3=rsvd
 	GpioCtrlRegs.GPAMUX1.bit.GPIO5  = 3;		// 0=GPIO  1=EPWM3B     2=MFSRA      3=ECAP1  (used in Lab 7)

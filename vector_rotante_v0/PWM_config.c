@@ -6,9 +6,13 @@
  *   07/15/08 - original
  **********************************************************************/
 
-#include "Lab.h" // Main include file
+#include "Lab.h"
 
 void pwm2();
+
+void pwm1_init();
+
+void pwm1_config_interrupt();
 
 /**********************************************************************
  * Function: InitEPwm()
@@ -27,9 +31,24 @@ void InitEPwm(void)
 
 	pwm2();
 
-	//---------------------------------------------------------------------
-	//************************************************************** Configure ePWM1 for 10 kHz symmetric PWM on EPWM1A pin **********************************
-	//---------------------------------------------------------------------
+	pwm1_init();
+
+	pwm1_config_interrupt();
+}
+
+
+
+/**
+ * @brief Inicializa los registros del EPWM1 para generar un PWM de 10 KHz y DC variable en los pines 00 y 01
+ * El 00 responde al CMPA y el 01 responde al CMPB.
+ * La escala es de 0 a 7500, siendo 0 el 100% el alto y 7500 el bajo. 
+ * 
+ * Oportunidad de mejora: no se están utilizando peescalers, por lo cual "se desperdicia" resolución del timer
+ * ya que éste es de 16 bits (alcanza para 65535 cuentas)
+ * 
+ */
+void pwm1_init()
+{
 	EPwm1Regs.TBCTL.bit.CTRMODE = 0x3; // Disable the timer -> NO DEBERIA SER NECESARIA POR LA LINEA 37
 
 	EPwm1Regs.TBCTL.all = 0xC033; // Configure timer control register
@@ -44,12 +63,12 @@ void InitEPwm(void)
 	// bit 1-0       11:     CTRMODE, 11 = timer stopped (disabled)
 
 	EPwm1Regs.TBCTR = 0x0000; // Clear timer counter
-	// EPwm1Regs.TBPRD = PWM_HALF_PERIOD;	// Set timer period
 	EPwm1Regs.TBPRD = PROJECT_PERIOD;	 // Levanto la frecuencia a 10 kHz PWM_HALF_PERIOD
 	EPwm1Regs.TBPHS.half.TBPHS = 0x0000; // Set timer phase
 
 	// EPwm1Regs.CMPA.half.CMPA = PWM_DUTY_CYCLE;	// Set PWM duty cycle
 	EPwm1Regs.CMPA.half.CMPA = PROJECT_PERIOD * 0.5;
+	EPwm1Regs.CMPB = PROJECT_PERIOD * 0.75;
 
 	// EPwm1Regs.ETSEL.all = 0b01100;			// Activo la interrupción EPWM
 	//  bit 15        0:      SOCBEN, 0 = disable SOCB
@@ -59,11 +78,12 @@ void InitEPwm(void)
 	//  bit 7-4       0000:   reserved
 	//  bit 3         1:      INTEN, 1 = enable interrupt
 	//  bit 2-0       000:    INTSEL, don't care
-	EPwm1Regs.ETSEL.bit.INTEN = 1; // habilita interrupcion
-	EPwm1Regs.ETSEL.bit.INTSEL = 2; //trigger a en el TBPRD
-	EPwm1Regs.ETPS.bit.INTPRD = 1; // EPWMxINTn Period Select
-	
-	EPwm1Regs.CMPCTL.all = 0x0002; // Compare control register
+	EPwm1Regs.ETSEL.bit.INTEN = 1;	// habilita interrupcion
+	EPwm1Regs.ETSEL.bit.INTSEL = 2; // trigger a en el TBPRD
+	EPwm1Regs.ETPS.bit.INTPRD = 1;	// EPWMxINTn Period Select
+
+	// **** COMPARE CONTROL REGISTER
+	// EPwm1Regs.CMPCTL.all = 0x0002; // Compare control register
 	// bit 15-10     0's:    reserved
 	// bit 9         0:      SHDWBFULL, read-only
 	// bit 8         0:      SHDWAFULL, read-only
@@ -73,8 +93,11 @@ void InitEPwm(void)
 	// bit 4         0:      SHDWAMODE, 0 = shadow mode
 	// bit 3-2       00:     LOADBMODE, don't care
 	// bit 1-0       10:     LOADAMODE, 10 = load on zero or PRD match
+	EPwm1Regs.CMPCTL.bit.LOADBMODE = 2;
+	EPwm1Regs.CMPCTL.bit.LOADAMODE = 2;
 
 	EPwm1Regs.AQCTLA.all = 0x0060; // Action-qualifier control register A
+	EPwm1Regs.AQCTLB.all = 0x0600; // Action-qualifier control register B
 	// bit 15-12     0000:   reserved
 	// bit 11-10     00:     CBD, 00 = do nothing
 	// bit 9-8       00:     CBU, 00 = do nothing
@@ -98,16 +121,20 @@ void InitEPwm(void)
 
 	EPwm1Regs.DBCTL.bit.OUT_MODE = 0; // Deadband disabled
 	EPwm1Regs.PCCTL.bit.CHPEN = 0;	  // PWM chopper unit disabled
+	
 	EPwm1Regs.TZCTL.bit.TZA = 0x3;	  // Trip action disabled for output A
+	EPwm1Regs.TZCTL.bit.TZB = 0x3;	  // Trip action disabled for output B
 
 	EPwm1Regs.TBCTL.bit.CTRMODE = 0x2; // Enable the timer in count up/down mode
+}
 
+void pwm1_config_interrupt()
+{
 	//---------------------------------------------------------------------
 	//--- Enable the clocks to the ePWM module.
 	//--- Note: this should be done after all ePWM modules are configured
 	//--- to ensure synchronization between the ePWM modules.
 	//---------------------------------------------------------------------
-
 	asm(" EALLOW");						   // Enable EALLOW protected register access
 	SysCtrlRegs.PCLKCR0.bit.TBCLKSYNC = 1; // HSPCLK to ePWM modules enabled
 	PieCtrlRegs.PIECTRL.bit.ENPIE = 0;	   // Disable the PIE

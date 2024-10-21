@@ -31,11 +31,11 @@ void InitGpio(void)
 	GpioCtrlRegs.GPAMUX1.bit.GPIO3  = 0;		// 0=GPIO  1=EPWM2B     2=ECAP5      3=rsvd
 	GpioCtrlRegs.GPAMUX1.bit.GPIO4  = 0;		// 0=GPIO  1=EPWM3A     2=rsvd       3=rsvd
 	GpioCtrlRegs.GPAMUX1.bit.GPIO5  = 3;		// 0=GPIO  1=EPWM3B     2=MFSRA      3=ECAP1  (used in Lab 7)
-	GpioCtrlRegs.GPAMUX1.bit.GPIO6  = 0;		// 0=GPIO  1=EPWM4A     2=EPWMSYNCI  3=EPWMSYNCO
+	GpioCtrlRegs.GPAMUX1.bit.GPIO6  = 1;		// 0=GPIO  1=EPWM4A     2=EPWMSYNCI  3=EPWMSYNCO
 	GpioCtrlRegs.GPAMUX1.bit.GPIO7  = 0;		// 0=GPIO  1=EPWM4B     2=MCLKRA     3=ECAP2
-	GpioCtrlRegs.GPAMUX1.bit.GPIO8  = 0;		// 0=GPIO  1=EPWM5A     2=CANTXB     3=ADCSOCAO
+	GpioCtrlRegs.GPAMUX1.bit.GPIO8  = 1;		// 0=GPIO  1=EPWM5A     2=CANTXB     3=ADCSOCAO
 	GpioCtrlRegs.GPAMUX1.bit.GPIO9  = 0;		// 0=GPIO  1=EPWM5B     2=SCITXDB    3=ECAP3
-	GpioCtrlRegs.GPAMUX1.bit.GPIO10 = 0;		// 0=GPIO  1=EPWM6A     2=CANRXB     3=ADCSOCBO
+	GpioCtrlRegs.GPAMUX1.bit.GPIO10 = 1;		// 0=GPIO  1=EPWM6A     2=CANRXB     3=ADCSOCBO
 	GpioCtrlRegs.GPAMUX1.bit.GPIO11 = 0;		// 0=GPIO  1=EPWM6B     2=SCIRXDB    3=ECAP4
 	GpioCtrlRegs.GPAMUX1.bit.GPIO12 = 0;		// 0=GPIO  1=TZ1        2=CANTXB     3=SPISIMOB
 	GpioCtrlRegs.GPAMUX1.bit.GPIO13 = 0;		// 0=GPIO  1=TZ2        2=CANRXB     3=SPISOMIB

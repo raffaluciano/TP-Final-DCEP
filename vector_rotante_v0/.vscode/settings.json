@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "lab.h": "c",
+        "math.h": "c",
+        "dsp2833x_defaultisr.h": "c"
+    }
+}

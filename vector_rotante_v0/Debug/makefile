@@ -23,6 +23,7 @@ ORDERED_OBJS += \
 "./SysCtrl.obj" \
 "./Watchdog.obj" \
 "./main.obj" \
+"./modulacion_vectorial.obj" \
 "../28335_RAM_lnk.cmd" \
 "../DSP2833x_Headers_nonBIOS.cmd" \
 $(GEN_CMDS__FLAG) \
@@ -154,8 +155,8 @@ vector_rotante_v0.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "ADC_config.obj" "CodeStartBranch.obj" "DSP2833x_GlobalVariableDefs.obj" "DelayUs.obj" "ECap_7_8_9_10_12.obj" "Gpio.obj" "Interrupciones.obj" "PWM_config.obj" "PieVect_5_6_7_8_9_10.obj" "Pie_config.obj" "SysCtrl.obj" "Watchdog.obj" "main.obj" 
-	-$(RM) "ADC_config.d" "DSP2833x_GlobalVariableDefs.d" "ECap_7_8_9_10_12.d" "Gpio.d" "Interrupciones.d" "PWM_config.d" "PieVect_5_6_7_8_9_10.d" "Pie_config.d" "SysCtrl.d" "Watchdog.d" "main.d" 
+	-$(RM) "ADC_config.obj" "CodeStartBranch.obj" "DSP2833x_GlobalVariableDefs.obj" "DelayUs.obj" "ECap_7_8_9_10_12.obj" "Gpio.obj" "Interrupciones.obj" "PWM_config.obj" "PieVect_5_6_7_8_9_10.obj" "Pie_config.obj" "SysCtrl.obj" "Watchdog.obj" "main.obj" "modulacion_vectorial.obj" 
+	-$(RM) "ADC_config.d" "DSP2833x_GlobalVariableDefs.d" "ECap_7_8_9_10_12.d" "Gpio.d" "Interrupciones.d" "PWM_config.d" "PieVect_5_6_7_8_9_10.d" "Pie_config.d" "SysCtrl.d" "Watchdog.d" "main.d" "modulacion_vectorial.d" 
 	-$(RM) "CodeStartBranch.d" "DelayUs.d" 
 	-@echo 'Finished clean'
 	-@echo ' '

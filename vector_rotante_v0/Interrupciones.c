@@ -7,8 +7,8 @@
 **********************************************************************/
 
 #include "Lab.h"							// Main include file
-static int mi_contador = 0;
-
+extern int interrupcion();
+//#include "modulacion_vectorial.c"
 
 //---------------------------------------------------------------------
 interrupt void INT13_ISR(void)					// 0x000D1A  INT13 - XINT13 or CPU Timer1
@@ -367,8 +367,8 @@ interrupt void EPWM6_TZINT_ISR(void)			// PIE2.6 @ 0x000D5A  EPWM6_TZINT (EPWM6)
 interrupt void EPWM1_INT_ISR(void)				// PIE3.1 @ 0x000D60  EPWM1_INT (EPWM1)
 {
 	PieCtrlRegs.PIEACK.all = PIEACK_GROUP3;		// Must acknowledge the PIE group
-  	EPwm1Regs.ETCLR.bit.INT=1;                  //limpiar bandera
-	mi_contador ++;
+  	EPwm1Regs.ETCLR.bit.INT = 1;                //limpiar bandera
+	interrupcion();
 
 // Next two lines for debug only - remove after inserting your ISR
 	//asm (" ESTOP0");							// Emulator Halt instruction

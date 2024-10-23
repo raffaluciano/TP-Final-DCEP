@@ -27,11 +27,6 @@ main.obj: C:/Users/lraff/Desktop/C2000-20240405/Solutions/DSP2833x_headers/inclu
 main.obj: C:/Users/lraff/Desktop/C2000-20240405/Solutions/DSP2833x_headers/include/DSP2833x_XIntrupt.h
 main.obj: C:/Users/lraff/Desktop/C2000-20240405/Solutions/DSP2833x_headers/include/DSP2833x_Xintf.h
 main.obj: ../DSP2833x_DefaultIsr.h
-main.obj: C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/math.h
-main.obj: C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/_defs.h
-main.obj: C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/sys/_types.h
-main.obj: C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/machine/_types.h
-main.obj: C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/machine/_limits.h
 
 ../main.c:
 
@@ -86,14 +81,4 @@ C:/Users/lraff/Desktop/C2000-20240405/Solutions/DSP2833x_headers/include/DSP2833
 C:/Users/lraff/Desktop/C2000-20240405/Solutions/DSP2833x_headers/include/DSP2833x_Xintf.h:
 
 ../DSP2833x_DefaultIsr.h:
-
-C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/math.h:
-
-C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/_defs.h:
-
-C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/sys/_types.h:
-
-C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/machine/_types.h:
-
-C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/machine/_limits.h:
 

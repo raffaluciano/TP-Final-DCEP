@@ -11,6 +11,7 @@
 "./SysCtrl.obj"
 "./Watchdog.obj"
 "./main.obj"
+"./modulacion_vectorial.obj"
 "../28335_RAM_lnk.cmd"
 "../DSP2833x_Headers_nonBIOS.cmd"
 -llibc.a

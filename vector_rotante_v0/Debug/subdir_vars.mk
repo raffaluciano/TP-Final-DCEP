@@ -24,7 +24,8 @@ C_SRCS += \
 ../Pie_config.c \
 ../SysCtrl.c \
 ../Watchdog.c \
-../main.c 
+../main.c \
+../modulacion_vectorial.c 
 
 C_DEPS += \
 ./ADC_config.d \
@@ -37,7 +38,8 @@ C_DEPS += \
 ./Pie_config.d \
 ./SysCtrl.d \
 ./Watchdog.d \
-./main.d 
+./main.d \
+./modulacion_vectorial.d 
 
 OBJS += \
 ./ADC_config.obj \
@@ -52,7 +54,8 @@ OBJS += \
 ./Pie_config.obj \
 ./SysCtrl.obj \
 ./Watchdog.obj \
-./main.obj 
+./main.obj \
+./modulacion_vectorial.obj 
 
 ASM_DEPS += \
 ./CodeStartBranch.d \
@@ -71,7 +74,8 @@ OBJS__QUOTED += \
 "Pie_config.obj" \
 "SysCtrl.obj" \
 "Watchdog.obj" \
-"main.obj" 
+"main.obj" \
+"modulacion_vectorial.obj" 
 
 C_DEPS__QUOTED += \
 "ADC_config.d" \
@@ -84,7 +88,8 @@ C_DEPS__QUOTED += \
 "Pie_config.d" \
 "SysCtrl.d" \
 "Watchdog.d" \
-"main.d" 
+"main.d" \
+"modulacion_vectorial.d" 
 
 ASM_DEPS__QUOTED += \
 "CodeStartBranch.d" \
@@ -101,7 +106,8 @@ C_SRCS__QUOTED += \
 "../Pie_config.c" \
 "../SysCtrl.c" \
 "../Watchdog.c" \
-"../main.c" 
+"../main.c" \
+"../modulacion_vectorial.c" 
 
 ASM_SRCS__QUOTED += \
 "../CodeStartBranch.asm" \
